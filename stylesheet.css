@@ -41,7 +41,21 @@ figcaption {
 .question_container {
     width: 80%;
     margin-left: 10%;
-    margin-top: 5%;
+    margin-top: 25px;
+    padding: 5px;
+    background-color: rgb(80, 70, 79);
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.score_container {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5px;
     padding: 5px;
     background-color: rgb(80, 70, 79);
     color: white;

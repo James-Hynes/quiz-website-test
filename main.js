@@ -1,5 +1,6 @@
 let current_answer;
 let round = 0;
+let score = 0;
 let current_country;
 
 $(document).ready(() => {
@@ -25,6 +26,11 @@ function setCountries(country_a_name, country_b_name) {
 function setQuestion(question) {
     let question_span = document.getElementById("question");
     question_span.innerHTML = question;
+}
+
+function setScore() {
+    let score_span = document.getElementById('score');
+    score_span.innerHTML = "Score: " + score;
 }
 
 function generateCountry(excluded_country) {
@@ -59,7 +65,7 @@ function getAnswer(comparison, country_a_name, country_b_name) {
 
 function getCurrentCountryCode(n) { // n = 0 || 1
     let flag = document.getElementsByClassName('flag_image')[n];
-    return flag.src.split(".png")[0].split("/")[5];
+    return flag.src.split(".png")[0].slice(-2);
 }
 
 function generateNewRound(prev_country) {
@@ -94,6 +100,8 @@ function checkAnswer(n) {
     round++;
     if(n === current_answer) {
         console.log("correct!");
+        score++;
+        setScore();
         generateNewRound(getCurrentCountryCode(n));
     } else {
         console.log("incorrect!");
