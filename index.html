@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- style/favicon -->
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="icon" href="./resources/favicon.ico" type="image/x-icon">
+
+        <!-- load country data thru js files -->
+        <script src="./resources/js/country_codes.js"></script>
+        <script src="./resources/js/countryCommunicationsData.js"></script>
+        <script src="./resources/js/countryDemoData.js"></script>
+        <script src="./resources/js/countryEconData.js"></script>
+        <script src="./resources/js/countryEnergyData.js"></script>
+        <script src="./resources/js/countryGeographicData.js"></script>
+        <script src="./resources/js/countryGovData.js"></script>
+        <script src="./resources/js/countryMilitaryData.js"></script>
+        <script src="./resources/js/countryTransportationData.js"></script>
+        
+        <!-- load jquery/main program file -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div class="quiz_container"> 
+            <div class="country_container">
+                <figure>
+                    <div class="big_flag_button" onclick="checkAnswer(0)"><img class="flag_image" src="resources/flags/ad.png"/></div>
+                    <figcaption class="country_name_sub">Andorra</figcaption>
+                </figure>
+            </div>
+            
+            <div class="country_container">
+                <figure>
+                    <div class="big_flag_button" onclick="checkAnswer(1)" ><img class="flag_image" src="resources/flags/al.png"/></div>
+                    <figcaption class="country_name_sub">Albania</figcaption>
+                </figure>
+            </div>
+
+            <div class="question_container">
+                <span id="question">Which of these two countries has a higher population?</span>
+            </div>
+        </div>
+    </body>
+</html>
