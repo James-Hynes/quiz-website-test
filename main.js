@@ -5,10 +5,7 @@ let current_country;
 let audioSources = [new Audio("./resources/audio/correct.mp3"), new Audio("./resources/audio/incorrect.mp3")];
 
 $(document).ready(() => {
-    let flag_buttons = document.getElementsByClassName("country_container");
-    flag_buttons[0].style.float = "left";
-    flag_buttons[1].style.float = "right";
-    generateNewRound();
+    // setupHigherLowerGame();
 });
 
 function generateCountry(excluded_country) {
@@ -21,4 +18,9 @@ function generateCountry(excluded_country) {
 
 function getCountryName(country_code) {
     return country_codes[country_code].toLowerCase();
+}
+
+function setFlag(country_a) {
+    let flag_images = document.getElementsByClassName('flag_image');
+    flag_images[0].src = "resources/flags/"+country_a+".png";
 }

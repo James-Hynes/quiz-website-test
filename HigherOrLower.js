@@ -4,7 +4,7 @@ const COMPARISONS = [{comparison: "population", "comparison_category": countryDe
 {comparison: "religions", "comparison_category": countryDemoData}]
 
 // Get the correct answer to a generated question from the data
-function getAnswer(comparison, country_a_name, country_b_name) {
+function getHigherLowerAnswer(comparison, country_a_name, country_b_name) {
     let country_a_comp = comparison["comparison_category"][country_a_name][comparison["comparison"]];
     let country_b_comp = comparison["comparison_category"][country_b_name][comparison["comparison"]];
     // Find the two categories being compared within the data
@@ -19,38 +19,41 @@ function getAnswer(comparison, country_a_name, country_b_name) {
     }
 }
 
-function getCurrentCountryCode(n) { // n = 0 || 1
+function getCurrentHigherLowerCountryCode(n) { // n = 0 || 1
+    let flag_buttons = document.getElementsByClassName("country_container");
+    flag_buttons[0].style.float = "left";
+    flag_buttons[1].style.float = "right";
     let flag = document.getElementsByClassName('flag_image')[n]; // either flag 0 or 1
     return flag.src.split(".png")[0].slice(-2); // get the country code of the flag (all country codes are 2 char by specification)
 }
 
-function generateNewRound(prev_country) {
+function generateNewHigherLowerRound(prev_country) {
     country_a = prev_country || generateCountry(); // on round 0 we generate two random countries, otherwise keeping the previous correct answer
     country_b = generateCountry(country_a);
 
     country_a_name = getCountryName(country_a);
     country_b_name = getCountryName(country_b);
 
-    let comparison = generateComparison();
-    let question = generateQuestion(comparison);
+    let comparison = generateHigherLowerComparison();
+    let question = generateHigherLowerQuestion(comparison);
 
     current_country = country_a;
     // generate all data for the round, then attempt to find the answers 
 
     try {
         // some countries do not contain as full of information as others, so sometimes we attempt to compare to nothing.
-        current_answer = getAnswer(comparison, country_a_name, country_b_name);
+        current_answer = getHigherLowerAnswer(comparison, country_a_name, country_b_name);
     } catch {
         if(round == 0) { // if the round is 0, either country 0 or 1 could be the problem
-            generateNewRound()
+            generateNewHigherLowerRound()
         } else {
-            generateNewRound(current_country); // if we aren't in round 0, we know the current country is not the problem, so we keep it.
+            generateNewHigherLowerRound(current_country); // if we aren't in round 0, we know the current country is not the problem, so we keep it.
         }
     }
 
-    setFlags(country_a, country_b); 
-    setCountries(country_a_name, country_b_name);
-    setQuestion(question);
+    setHigherLowerFlags(country_a, country_b); 
+    setHigherLowerCountries(country_a_name, country_b_name);
+    setHigherLowerQuestions(question);
 
     // change the images, change the captions, change the question
 }
@@ -62,8 +65,8 @@ function checkAnswer(n) { // called when user clicks an answer
         audioSources[0].currentTime=0;
         audioSources[0].play();
         score++;
-        setScore();
-        generateNewRound(getCurrentCountryCode(n));
+        setHigherLowerScore();
+        generateNewHigherLowerRound(getCurrentHigherLowerCountryCode(n));
     } else {
         audioSources[1].currentTime=0;
         audioSources[1].play();
@@ -72,16 +75,16 @@ function checkAnswer(n) { // called when user clicks an answer
         round = 0;
         current_answer = -1;
         current_country = -1;
-        setScore();
-        generateNewRound();
+        setHigherLowerScore();
+        generateNewHigherLowerRound();
     }
 }
 
-function generateComparison() {
+function generateHigherLowerComparison() {
     return COMPARISONS[Math.floor(Math.random() * COMPARISONS.length)];
 }
 
-function generateQuestion(comparison) {
+function generateHigherLowerQuestion(comparison) {
     switch(comparison["comparison"]) {
         case "population":
             return "Which of these countries has a higher population?";
@@ -113,24 +116,72 @@ function humanize(str) {
     return frags.join(' ');
 }
 
-function setFlags(country_a, country_b) {
+function setHigherLowerFlags(country_a, country_b) {
     let flag_images = document.getElementsByClassName('flag_image');
     flag_images[0].src = "resources/flags/"+country_a+".png";
     flag_images[1].src = "resources/flags/"+country_b+".png";
 }
 
-function setCountries(country_a_name, country_b_name) {
+function setHigherLowerCountries(country_a_name, country_b_name) {
     let country_names = document.getElementsByClassName("country_name_sub");
     country_names[0].innerHTML = humanize(country_a_name);
     country_names[1].innerHTML = humanize(country_b_name);
 }
 
-function setQuestion(question) {
+function setHigherLowerQuestions(question) {
     let question_span = document.getElementById("question");
     question_span.innerHTML = question;
 }
 
-function setScore() {
+function setHigherLowerScore() {
     let score_span = document.getElementById('score');
     score_span.innerHTML = "Score: " + score;
+}
+
+function setupHigherLowerGame() {
+    quiz_body = document.getElementsByClassName('quiz_container')[0];
+
+    // Setup country section
+    for(let i = 0; i < 2; i++) {
+        let country_container = document.createElement('div');
+        country_container.style.float = (i === 0) ? "left" : "right";
+        country_container.className = "country_container";
+        quiz_body.appendChild(country_container);
+        let fig = document.createElement('figure');
+        country_container.appendChild(fig);
+        let big_flag = document.createElement("div");
+        big_flag.className = "big_flag_button";
+        big_flag.onclick = () => {
+            checkAnswer(i);
+        };
+        fig.appendChild(big_flag);
+        let flag_img = document.createElement("img");
+        flag_img.src = "resources/flags/ad.png";
+        flag_img.className = "flag_image";
+        big_flag.appendChild(flag_img);
+        let cap = document.createElement("figcaption");
+        cap.className = "country_name_sub"
+        cap.innerHTML = "Andorra";
+        fig.appendChild(cap);
+    }
+
+    let question_container = document.createElement("div");
+    question_container.className = "question_container";
+    let question_span = document.createElement("span");
+    question_span.id="question";
+    question_span.innerHTML = "Which of these two countries has a higher population?";
+
+    quiz_body.appendChild(question_container);
+    question_container.appendChild(question_span);
+
+    let score_container = document.createElement("div");
+    score_container.className = "score_container";
+    let score_span = document.createElement("span");
+    score_span.id="score";
+    score_span.innerHTML = "Score: 0";
+
+    quiz_body.appendChild(score_container);
+    score_container.appendChild(score_span);
+
+    generateNewHigherLowerRound();
 }
