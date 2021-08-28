@@ -108,6 +108,11 @@ function capitalizeFirstLetter(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+function setHigherLowerFlag(country_a) {
+    let flag_images = document.getElementsByClassName('flag_image');
+    flag_images[0].src = "resources/flags/"+country_a+".png";
+}
+
 function humanize(str) {
     var i, frags = str.split('_');
     for (i=0; i<frags.length; i++) {

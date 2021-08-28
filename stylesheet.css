@@ -39,7 +39,7 @@ figcaption {
 }
 
 .question_container {
-    width: 80%;
+    width: 640px;
     margin-left: 10%;
     margin-top: 25px;
     padding: 5px;
@@ -53,7 +53,7 @@ figcaption {
 }
 
 .score_container {
-    width: 80%;
+    width: 640px;
     margin-left: 10%;
     margin-top: 5px;
     padding: 5px;
@@ -64,4 +64,66 @@ figcaption {
     display: inline-block;
     text-align: center;
     border: 1px solid black;
+}
+
+.score_container_flag_game {
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 2px solid white !important;
+}
+
+.flag_game_flag_image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    padding: 2px;
+}
+
+.flag_game_country_option {
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 640px;
+    height: 26px;
+    background-color:rgb(80, 70, 79);
+    display: flex;
+    justify-content: space-between; 
+    border: 2px solid white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+.flag_game_country_option_text {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: white;
+    padding: 5px;
+}
+
+.flag_game_country_option_container:first-child {
+    border-left: none;
+}
+
+.flag_game_country_option_container:last-child {
+    border-right: none;
+}
+
+.flag_game_country_option_container {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    padding: 3px;
+    float: left;
+}
+
+.flag_game_country_option_container:hover {
+    background-color: darkcyan;
+    cursor: pointer;
+    background-color:rgb(119, 118, 119);
+}
+
+hr {
+    border: 1px solid black;
+    margin-top: 40px;
 }
