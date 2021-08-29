@@ -38,7 +38,7 @@ let country_codes = {
     "bz": "Belize",
     "ca": "Canada",
     "cc": "Cocos_Keeling_Islands",
-    "cd": "DR Congo",
+    "cd": "Democratic_Republic_of_the_Congo",
     "cf": "Central_African_Republic",
     "cg": "Republic_of_the_Congo",
     "ch": "Switzerland",
@@ -251,5 +251,5 @@ let country_codes = {
     "yt": "Mayotte",
     "za": "South_Africa",
     "zm": "Zambia",
-    "zw": "Zimbabwe"
+    "zw": "Zimbabwe",
 }
