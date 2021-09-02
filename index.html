@@ -21,33 +21,13 @@
         <!-- load jquery/main program file -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="HigherOrLower.js"></script>
+        <script src="FlagGame.js"></script>
         <script src="main.js"></script>
     </head>
     <body>
-        <div class="quiz_container"> 
-        </div>
-        <div class="options_container">
-            <select name="options" id="options_menu" onchange="changeSettings(this)">
-                <option value="world_no_territories">World (No Territories)</option>
-                <option value="world">World (all)</option>
-                <option value="oceania">Oceania</option>
-                <option value="south_america">South America</option>
-                <option value="north_america">North America</option>
-                <option value="africa">Africa</option>
-                <option value="asia">Asia</option>
-                <option value="europe">Europe</option>
-                <option value="middle_east">Middle East</option>
-                <option value="all_america">The Americas</option>
-                <option value="eurasia">Eurasia</option>
-                <option value="oceania_no_territories">Oceania (No Territories)</option>
-                <option value="south_america_no_territories">South America (No Territories)</option>
-                <option value="north_america_no_territories">North America (No Territories)</option>
-                <option value="africa_no_territories">Africa (No Territories)</option>
-                <option value="asia_no_territories">Asia (No Territories)</option>
-                <option value="europe_no_territories">Europe (No Territories)</option>
-                <option value="eurasia_no_territories">Eurasia (No Territories)</option>
-                <option value="americas_no_territories">The Americas (No Territories)</option>
-            </select>
+        <div class="quiz_container">
+            <img class='world_map' src="./resources/maps/world_map_gray.png"/>
+            <div class="pointer"></div>
         </div>
     </body>
 </html>

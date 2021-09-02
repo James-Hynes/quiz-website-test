@@ -28,8 +28,8 @@ function getCurrentHigherLowerCountryCode(n) { // n = 0 || 1
 }
 
 function generateNewHigherLowerRound(prev_country) {
-    country_a = prev_country || generateCountry(); // on round 0 we generate two random countries, otherwise keeping the previous correct answer
-    country_b = generateCountry(country_a);
+    country_a = prev_country || generateHigherLowerCountry(); // on round 0 we generate two random countries, otherwise keeping the previous correct answer
+    country_b = generateHigherLowerCountry(country_a);
 
     country_a_name = getCountryName(country_a);
     country_b_name = getCountryName(country_b);
@@ -189,4 +189,12 @@ function setupHigherLowerGame() {
     score_container.appendChild(score_span);
 
     generateNewHigherLowerRound();
+}
+
+function generateHigherLowerCountry(excluded_country) {
+    let country_code = "";
+    while(country_code.length != 2 || excluded_country === country_code) {
+        country_code =  Object.keys(country_codes)[Math.floor(Math.random() * Object.keys(country_codes).length)];
+    }
+    return country_code;
 }
